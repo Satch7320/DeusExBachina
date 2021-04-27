@@ -1,0 +1,80 @@
+{
+    "data_description": {
+        "training_master_note_array_path": "/home/ubuntu/capstone3/DeusExBachina/dataset_master_note_array_0_training.mna_jl",
+        "validation_master_note_array_path": "/home/ubuntu/capstone3/DeusExBachina/dataset_master_note_array_0_validation.mna_jl"
+    },
+    "model_description": {
+        "model_path": "/home/ubuntu/capstone3/DeusExBachina/models/4_trained_model",
+        "model_initializer": {
+            "path": "pianonet/scripts/model_generators/basic_convolutional_with_blocks.py",
+            "params": {
+                "filter_increments": [
+                    [
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4
+                    ],
+                    [
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4,
+                        4
+                    ],
+                    [
+                        6,
+                        6,
+                        6,
+                        6,
+                        6,
+                        6,
+                        6,
+                        6,
+                        8,
+                        8
+                    ]
+                ],
+                "default_activation": "elu",
+                "use_calibrated_output_bias": true
+            }
+        }
+    },
+    "training_description": {
+        "batch_size": 8,
+        "num_predicted_time_steps_in_sample": 24,
+        "epochs": 10000,
+        "checkpoint_frequency_in_steps": 250,
+        "fraction_data_each_epoch": 0.1,
+        "loss": "binary_crossentropy",
+        "optimizer_description": {
+            "type": "Adam",
+            "kwargs": {
+                "lr": 0.0001,
+                "beta_1": 0.9,
+                "beta_2": 0.999,
+                "epsilon": 1e-07,
+                "decay": 0.0
+            }
+        }
+    },
+    "validation_description": {
+        "batch_size": 1,
+        "num_predicted_time_steps_in_sample": 512,
+        "fraction_data_each_epoch": 1.0
+    }
+}
