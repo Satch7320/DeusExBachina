@@ -26,7 +26,11 @@ The image above should aid in understanding what MIDI does. It maps signals from
 
 With the data processed and ready for training, I halted training after a day on my personal machine and listened to the output.
 
+![](bachina_2.mp3)
+
 While it seemed to capture some of the style, the parallel motion giving way to simultaneous melodies, it lacks 'direction.' I played out a minute or so of audio and the model had entropied into prolonged silences or repeating a single motion like an ascending phrase. Because of the training speed, I transplanted the project to an AWS EC2 g4dn instance and trained again for nearly 2 days, halting the process at approximately 1600 epochs. I output another couple minutes of audio and felt there was a substantial improvement.
+
+![](longtraining.mp3)
 
 The model held more closely to the style of simultaneous but not parallel movement in the voices and did better about 'phrasing,' allowing pauses during play instead of leading every key press into another. It still eventually entropied into chromaticism as opposed to key changes and the sense of rhythm decayed over the duration too. All told, it felt like a good indication that more training was a good thing.
 
