@@ -3,13 +3,9 @@
 |--|
 
 As a musician of 19 years, I enjoy exploring the intersection between art and science. One could make the argument that math is how we interpret the natural phenomenon of music, while others could make the converse argument that music is an application of mathematics. That perspective was my motivation for this project: to see if I could teach a machine to be musical. In one sentence: I implemented a WaveNet-based Recurrent Neural Network that autoregressively generates new MIDI sequences. For the long-form, keep reading!
-
-<center>
   
 ![WTC](https://upload.wikimedia.org/wikipedia/en/1/11/Birchall-Wesley-Horn-Well-Tempered-Clavier.jpg)
 |--|
-
-</center>
 
 When first choosing what music I would use, I opted for Bach's Well-Tempered Clavier. This is a musical collection overstuffed with historical value. The finer points are beyond the scope of a data science project, but the bullet points are: 
 
@@ -19,12 +15,8 @@ When first choosing what music I would use, I opted for Bach's Well-Tempered Cla
 
 The last bullet point is especially important, because for this machine to work as I wanted I had to make some presumptuous simplifications. These simplifications were precipitated by the transition from analog to digital in the form of Musical Instrument Digital Interface (MIDI).
 
-<center>
-
 ![MIDIvisual](http://www.freewarefiles.com/screenshot/midipiano21.jpg)
 |--|
-
-</center>
 
 The image above should aid in understanding what MIDI does. It maps signals from instruments to musical notes, enabling a synthesizer to trigger drum samples, for example. When I was creating the input for this model, I stripped the dynamic, meter, and 'control' values from the data. Control here has flexible meaning for MIDI, but usually in the context of a piano it refers to the footpedals that control dampening of the strings. While this can be used in a real-time scenario, the model training was performed offline (and still works as such). The final input for the model has only a 1-dimensional array of 1s and 0s, representing an 88-key piano with keys pressed (1) or not (0). The image at the start of this README is a screenshot of output from the model. The x-axis is time across the composition and the y-axis indicates keys activated at a given time. The 'pillars' at the bottom are indicative of the dynamics being forced to a single value for each note.
 
@@ -38,7 +30,7 @@ While it seemed to capture some of the style, the parallel motion giving way to 
 
 The model held more closely to the style of simultaneous but not parallel movement in the voices and did better about 'phrasing,' allowing pauses during play instead of leading every key press into another. It still eventually entropied into chromaticism as opposed to key changes and the sense of rhythm decayed over the duration too. All told, it felt like a good indication that more training was a good thing.
 
-![loss](losses.png)
+![loss](LossValues.png)
 
 At least it was to my ear. The training loss plummeted and stayed low as one would hope, but the validation loss deviated pretty quickly after my first training session. It wound up oscillating around .09 to .10 and seemingly overfit the training data. I could not find a particular passage in the corpus of the Well-Tempered Clavier books that possessed the same phrases the model put out, but it had not learned fully how to do its job indefinitely. 
 
